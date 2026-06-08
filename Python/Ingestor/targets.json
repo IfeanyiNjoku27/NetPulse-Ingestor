@@ -1,0 +1,29 @@
+{
+    "targets": [
+        {
+            "name": "target1",
+            "url": "https://reqbin.com/echo",
+            "description": "this is a test target"
+        },
+        {
+            "name": "Github Target",
+            "url": "https://api.github.com",
+            "description": "this is the github api endpoint"
+        },
+        {
+            "name": "Google Target",
+            "url": "https://www.google.com",
+            "description": "this is the google homepage"
+        },
+        {
+            "name": "Brazillian Cars Target",
+            "url": "https://parallelum.com.br/fipe/api/v1/carros/marcas",
+            "description": "this is an api endpoint that provides information about brazillian cars"
+        },
+        {
+            "name": "Meme Maker Target",
+            "url": "http://alpha-meme-maker.herokuapp.com/",
+            "description": "this is an api endpoint that provides information about memes and allows you to create memes"
+        }
+    ]
+}
