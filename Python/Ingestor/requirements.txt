@@ -1,5 +1,7 @@
 certifi==2026.5.20
 charset-normalizer==3.4.7
+confluent-kafka==2.14.2
 idna==3.18
+kafka-python==2.3.2
 requests==2.34.2
 urllib3==2.7.0
