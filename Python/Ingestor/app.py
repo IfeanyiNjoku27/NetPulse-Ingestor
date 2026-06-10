@@ -95,7 +95,7 @@ def main():
     # Configuration mapping back to docker setup for kafka producer
     producer_config = { 'bootstrap.servers': 'localhost:9092' }
     producer = Producer(producer_config)
-    topic_name = "network-events"
+    topic_name = "netpulse-events"
 
     print("Starting the monitoring loop. Press Ctrl+C to stop...")
 
