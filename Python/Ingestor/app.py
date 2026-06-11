@@ -39,7 +39,7 @@ def ping_targets(name, url):
 
     # ---- Default values ----
     status = "DOWN" # default state is down until we get a successful response
-    status_code = "N/A" 
+    status_code = 400 
     latency_seconds = None # 
     latency_ms = None 
     error_message = "None"
@@ -61,13 +61,13 @@ def ping_targets(name, url):
 
     except requests.exceptions.Timeout:
         status = "TIMEOUT"
-        status_code = "TIMEOUT"
+        status_code = 400
         latency_ms = 5000 # set latency to 5000 ms for timeouts
         error_message = "Request timed out"
 
     except requests.exceptions.RequestException as e:
         status = "ERROR"
-        status_code = "ERROR"
+        status_code = 500
         error_message = str(e)
 
     return {
