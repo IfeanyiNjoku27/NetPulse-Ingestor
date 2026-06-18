@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+# Postgres Service
+  netpulse-db:
+    image: postgres:15-alpine
+    container_name: netpulse-db
+    environment:
+      POSTGRES_USER: netpulse
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: netpulse_db
+    ports:
+      - "5433:5432" # map to 5433 to avoid conflicts with local Postgres
+    volumes:
+      - netpulse_data:/var/lib/postgresql/data
+
+# Kafka Service
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: netpulse-kafka
@@ -29,3 +43,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+
+volumes:
+  netpulse_data:

@@ -120,7 +120,7 @@ def main():
                 producer.poll(0)
 
                 print("-" * 50)  # separator for readability
-                time.sleep(10)  # wait for 10 seconds before pinging the next target (testing)
+                time.sleep(10)  # wait for 200 seconds before pinging the next target (testing)
     except KeyboardInterrupt:
         print("Monitoring stopped by user.")
     finally:

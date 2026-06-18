@@ -22,8 +22,23 @@
         },
         {
             "name": "Meme Maker Target",
-            "url": "http://alpha-meme-maker.herokuapp.com/",
+            "url": "http://alpha-meme-maker.herokuapp.co/",
             "description": "this is an api endpoint that provides information about memes and allows you to create memes"
+        },
+        {
+            "name": "ReqRes Users list Target",
+            "url": "https://reqres.in",
+            "description": "this is an api endpoint that provides a list of users and allows you to create users"
+        },
+        {
+            "name": "httpbunn Target",
+            "url": "https://httpbun.com",
+            "description": "this is an api endpoint that provides various endpoints for testing HTTP requests and responses"
+        },
+        {
+            "name": "JSONPlaceholder Target",
+            "url": "https://jsonplaceholder.typicode.com",
+            "description": "this is an api endpoint that provides various endpoints for testing HTTP requests and responses, including posts, comments, albums, photos, todos, and users"
         }
     ]
 }
