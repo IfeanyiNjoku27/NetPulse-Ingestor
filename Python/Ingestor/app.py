@@ -120,7 +120,7 @@ def main():
                 producer.poll(0)
 
                 print("-" * 50)  # separator for readability
-                time.sleep(10)  # wait for 200 seconds before pinging the next target (testing)
+                time.sleep(30)  # wait for 30 seconds before pinging the next target (testing)
     except KeyboardInterrupt:
         print("Monitoring stopped by user.")
     finally:
@@ -128,6 +128,6 @@ def main():
         print("Producer flushed and exiting.")
 
 
-# --- Entry Point ---
+# --- Entry Point ---g
 if __name__ == "__main__":
     main()
