@@ -3,7 +3,7 @@ import json
 import os
 import time
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from confluent_kafka import Producer
 
 # ---- Kafka Callback Function ----
@@ -35,7 +35,7 @@ def load_targets_from_json(file_path):
     
 def ping_targets(name, url):
     """ Ping a target URL and return the status, status code, latency, and error message (if any). """
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
     # ---- Default values ----
     status = "DOWN" # default state is down until we get a successful response
@@ -120,7 +120,7 @@ def main():
                 producer.poll(0)
 
                 print("-" * 50)  # separator for readability
-                time.sleep(30)  # wait for 30 seconds before pinging the next target (testing)
+                time.sleep(10)  # wait for 30 seconds before pinging the next target (testing)
     except KeyboardInterrupt:
         print("Monitoring stopped by user.")
     finally:

@@ -39,6 +39,16 @@
             "name": "JSONPlaceholder Target",
             "url": "https://jsonplaceholder.typicode.com",
             "description": "this is an api endpoint that provides various endpoints for testing HTTP requests and responses, including posts, comments, albums, photos, todos, and users"
+        },
+        {
+            "name": "typicode Target",
+            "url": "https://typicode.com",
+            "description": "this is an api endpoint that provides various endpoints for testing HTTP requests and responses, including posts, comments, albums, photos, todos, and users"
+        },
+        {
+            "name": "Fake Store API Target",
+            "url": "https://fakestoreapi.com",
+            "description": "this is an api endpoint that provides various endpoints for testing HTTP requests and responses, including products, carts, and users"
         }
     ]
 }

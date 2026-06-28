@@ -18,7 +18,7 @@ type Event struct {
 	Statuscode     int       `json:"status_code"`
 	Latencyms      *int      `json:"latency_ms"` // pointer to int to allow for null values on failure
 	ErrorMessage   string    `json:"error"`
-	Time           time.Time `json:"time"` // handled internally for db logging, not included in kafka message
+	Time           time.Time `json:"timestamp"` // handled internally for db logging, not included in kafka message
 }
 
 // database connection function to connect to postgres database using connection string
@@ -85,7 +85,7 @@ func LogStateTransition(db *sql.DB, event Event, prevStatus string) error {
 		event.Statuscode,
 		event.Latencyms,
 		event.ErrorMessage,
-		time.Now(),
+		event.Time,
 	)
 	return err
 }
@@ -123,4 +123,37 @@ func FetchStateHistory(db *sql.DB, limit int) ([]Event, error) {
 		history = append(history, ev)
 	}
 	return history, nil
+}
+
+// FetchActiveDevices gets the latests known state of all unique devices for the UI grid
+func FetchActiveDevices(db *sql.DB) ([]Event, error) {
+	query := `
+		SELECT DISTINCT ON (device_name) device_name, target_url, previous_status, current_status, status_code, latency_ms, error_message, transition_time 
+		FROM network_state_transitions 
+		ORDER BY device_name, transition_time DESC;
+	`
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, fmt.Errorf("error querying active devices: %v", err)
+	}
+	defer rows.Close()
+
+	var devices []Event
+	for rows.Next() {
+		var ev Event
+		err := rows.Scan(
+			&ev.Device,
+			&ev.URL,
+			&ev.PreviousStatus,
+			&ev.Status,
+			&ev.Statuscode,
+			&ev.Latencyms,
+			&ev.ErrorMessage,
+			&ev.Time,
+		)
+		if err == nil {
+			devices = append(devices, ev)
+		}
+	}
+	return devices, nil
 }
